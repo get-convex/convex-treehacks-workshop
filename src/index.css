@@ -1,0 +1,40 @@
+
+ul {
+  border: solid 1px lightgray;
+}
+
+ul:empty {
+  display: none;
+}
+
+li {
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 16px 8px 16px;
+  border-bottom: solid 1px lightgray;
+  font-size: 16px;
+}
+
+li:last-child {
+  border: 0;
+}
+
+li span:nth-child(1) {
+  font-weight: bold;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+li span:nth-child(2) {
+  margin-right: 4px;
+  word-break: break-word;
+}
+li span:nth-child(3) {
+  color: #6c757d;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
