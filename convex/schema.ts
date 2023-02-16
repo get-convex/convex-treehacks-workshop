@@ -11,6 +11,9 @@ export default defineSchema(
       title: s.optional(s.string()),
       storageId: s.string(),
     }),
+    slideIndex: defineTable({
+      index: s.number(),
+    }),
   }
   //, { strict: false }
 );
