@@ -8,7 +8,7 @@ export default function App() {
     <main>
       <h1>Convex TreeHacks Workshop</h1>
       {name ? <Chat name={name} /> : <GetName finished={setName} />}
-      <Slides index={0} />
+      <Slides index={1} />
     </main>
   );
 }

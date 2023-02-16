@@ -13,6 +13,7 @@ export const Slides = ({ index }: { index: number }) => {
 
   return (
     <section>
+      <h2>Slides</h2>
       {slides[index] ? (
         <img src={slides[index]} />
       ) : (

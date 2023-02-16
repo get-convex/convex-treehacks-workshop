@@ -22,6 +22,7 @@ export const Chat = ({ name }: { name: string }) => {
         onSubmit={(e) => {
           e.preventDefault();
           setNewMessageText("");
+          //alert(name + ": " + newMessageText);
           sendMessage(newMessageText, name);
         }}
       >

@@ -8,6 +8,7 @@ export default defineSchema(
       url: s.optional(s.string()),
     }),
     slides: defineTable({
+      title: s.optional(s.string()),
       storageId: s.string(),
     }),
   }
