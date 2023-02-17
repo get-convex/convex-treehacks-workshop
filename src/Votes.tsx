@@ -7,7 +7,7 @@ export const Votes = ({ name }: { name: string }) => {
 
   const [newMessageText, setNewMessageText] = useState("");
   const vote = useMutation("votes:vote");
-  const counts: Map<string, number> = useQuery("votes:count");
+  const counts = useQuery("votes:count");
   const data: { label: string; data: { name: string; count: number }[] }[] = [];
   if (counts) {
     for (const [option, count] of counts.entries()) {
