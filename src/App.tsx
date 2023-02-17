@@ -10,8 +10,7 @@ export default function App() {
       <h1>Convex TreeHacks Workshop</h1>
       <section>
         <article>
-          Welcome! Let's get building with Convex. You can visit this site at{" "}
-          <a href="https://convex.ngrok.io">https://convex.ngrok.io</a>
+          Welcome! Let's get building with Convex.
           <br />
           The code is at{" "}
           <a href="https://github.com/get-convex/convex-treehacks-workshop">
@@ -50,8 +49,14 @@ export default function App() {
           - Ian (<a href="https://twitter.com/ianmacartney">@ianmacartney</a>)
         </article>
       </section>
-      {name ? <Chat name={name} /> : <GetName finished={setName} />}
-      {name ? <Votes name={name} /> : <GetName finished={setName} />}
+      {name ? (
+        <>
+          <Chat name={name} />
+          <Votes name={name} />
+        </>
+      ) : (
+        <GetName finished={setName} />
+      )}
       <Slides index={1} />
       {/*
        */}
