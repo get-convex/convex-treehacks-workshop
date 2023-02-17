@@ -14,6 +14,10 @@ export default defineSchema(
     slideIndex: defineTable({
       index: s.number(),
     }),
+    votes: defineTable({
+      option: s.string(),
+      author: s.string(),
+    }),
   }
   //, { strict: false }
 );

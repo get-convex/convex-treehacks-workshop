@@ -14,6 +14,12 @@ export const Chat = ({ name }: { name: string }) => {
           <li key={message._id.toString()}>
             <span>{message.author}:</span>
             <span>{message.body}</span>
+
+            {message.url && (
+              <figure>
+                <img src={message.url} />
+              </figure>
+            )}
             <span>{new Date(message._creationTime).toLocaleTimeString()}</span>
           </li>
         ))}

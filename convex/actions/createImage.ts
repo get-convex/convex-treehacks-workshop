@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import { Configuration, OpenAIApi } from "openai";
-import { Id } from "../convex/_generated/dataModel";
-import { action } from "../convex/_generated/server";
+import { Id } from "../_generated/dataModel";
+import { action } from "../_generated/server";
 
 const createImage = action(
   async (
@@ -86,4 +86,4 @@ const createImage = action(
     });
   }
 );
-//export default createImage;
+export default createImage;

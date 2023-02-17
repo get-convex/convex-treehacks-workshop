@@ -1,6 +1,7 @@
 import { Chat, GetName } from "./Chat";
 import { Slides } from "./Slides";
 import useSessionStorage from "./useSessionStorage";
+import { Votes } from "./Votes";
 
 export default function App() {
   const [name, setName] = useSessionStorage("name", "");
@@ -17,6 +18,7 @@ export default function App() {
             https://github.com/get-convex/convex-treehacks-workshop
           </a>
           <br />
+          You can join #convex in the TreeHacks slack for help.
           <br />
           Resources:
           <ul>
@@ -48,10 +50,11 @@ export default function App() {
           - Ian (<a href="https://twitter.com/ianmacartney">@ianmacartney</a>)
         </article>
       </section>
-      {/*
       {name ? <Chat name={name} /> : <GetName finished={setName} />}
-      <Slides index={0} />
-      */}
+      {name ? <Votes name={name} /> : <GetName finished={setName} />}
+      <Slides index={1} />
+      {/*
+       */}
     </main>
   );
 }

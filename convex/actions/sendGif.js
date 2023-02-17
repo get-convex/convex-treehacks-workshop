@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import { action } from "../convex/_generated/server";
+import { action } from "../_generated/server";
 
 function giphyUrl(queryString) {
   return (
@@ -23,4 +23,4 @@ const sendGif = action(async ({ runMutation }, queryString, messageId) => {
   // Write GIF url to Convex.
   await runMutation("messages:update", messageId, { url });
 });
-export default sendGif;
+//export default sendGif;
