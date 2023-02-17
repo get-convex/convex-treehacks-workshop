@@ -23,4 +23,4 @@ const sendGif = action(async ({ runMutation }, queryString, messageId) => {
   // Write GIF url to Convex.
   await runMutation("messages:update", messageId, { url });
 });
-//export default sendGif;
+export default sendGif;
