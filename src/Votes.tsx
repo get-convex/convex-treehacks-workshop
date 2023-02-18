@@ -8,26 +8,22 @@ export const Votes = ({ name }: { name: string }) => {
   const [newMessageText, setNewMessageText] = useState("");
   const vote = useMutation("votes:vote");
   const counts = useQuery("votes:count");
-  const data: { label: string; data: { name: string; count: number }[] }[] = [];
-  if (counts) {
-    for (const [option, count] of counts.entries()) {
-      data.push({ label: option, data: [{ name: option, count }] });
-    }
-    console.log(data);
-  }
   return (
     <section>
       <h2>Votes</h2>
-      {counts && <BarChart data={data} />}
       <ul>
         {counts &&
-          [...counts.entries()].map(([option]) => (
-            <li key={option}>
-              <button onClick={() => vote(option, name)}>
-                <span>{option}</span>
-              </button>
-            </li>
-          ))}
+          [...counts.entries()]
+            .sort((a, b) => b[1] - a[1])
+            .map(([option, count]) => (
+              <li key={option}>
+                <button onClick={() => vote(option, name)}>
+                  <span>
+                    {count}: {option}
+                  </span>
+                </button>
+              </li>
+            ))}
       </ul>
       <form
         onSubmit={(e) => {

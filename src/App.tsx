@@ -54,6 +54,7 @@ export default function App() {
       {name ? (
         <>
           <Chat name={name} />
+          <Votes name={name} />
         </>
       ) : (
         <GetName finished={setName} />
