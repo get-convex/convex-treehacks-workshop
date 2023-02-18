@@ -19,6 +19,8 @@ export default function App() {
           <br />
           You can join #convex in the TreeHacks slack for help.
           <br />
+          Or <a href="https://convex.dev/community">join our Discord.</a>
+          <br />
           Resources:
           <ul>
             <li>
@@ -52,7 +54,6 @@ export default function App() {
       {name ? (
         <>
           <Chat name={name} />
-          <Votes name={name} />
         </>
       ) : (
         <GetName finished={setName} />

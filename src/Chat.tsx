@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useMutation, useQuery } from "../convex/_generated/react";
 
 export const Chat = ({ name }: { name: string }) => {
-  const messages = useQuery("listMessages") ?? [];
+  const messages = useQuery("messages:list") ?? [];
 
   const [newMessageText, setNewMessageText] = useState("");
-  const sendMessage = useMutation("sendMessage");
+  const sendMessage = useMutation("messages:send");
   return (
     <section>
       <h2>Chat</h2>

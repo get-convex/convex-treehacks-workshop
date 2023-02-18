@@ -3,8 +3,8 @@ import fs from "fs";
 import path from "path";
 import fetch from "node-fetch";
 
-const address = "https://beloved-fox-571.convex.cloud";
-if (!address) throw new Error("Convex URL not found");
+const address = process.env.CONVEX_URL;
+if (!address) throw new Error("Specify CONVEX_URL env variable");
 const client = new ConvexHttpClient(address);
 
 const genUploadUrl = client.mutation("files:generateUploadUrl");
