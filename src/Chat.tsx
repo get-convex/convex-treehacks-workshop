@@ -59,8 +59,9 @@ export const GetName = ({ finished }: any) => {
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value.substring(0, 100))}
+        placeholder="Name"
       />
-      <input type="submit" value="Set Name" />
+      <input type="submit" value={"Join" + (name ? " as " + name : "")} />
     </form>
   );
 };
