@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import { action } from "./_generated/server";
 import { v } from "convex/values";
 
