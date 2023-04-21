@@ -1,23 +1,21 @@
-import { defineSchema, defineTable, s } from "convex/schema";
+import { defineSchema, defineTable } from "convex/schema";
+import { v } from "convex/values";
 
-export default defineSchema(
-  {
-    messages: defineTable({
-      author: s.string(),
-      body: s.string(),
-      url: s.optional(s.string()),
-    }),
-    slides: defineTable({
-      title: s.optional(s.string()),
-      storageId: s.string(),
-    }),
-    slideIndex: defineTable({
-      index: s.number(),
-    }),
-    votes: defineTable({
-      option: s.string(),
-      author: s.string(),
-    }),
-  }
-  //, { strict: false }
-);
+export default defineSchema({
+  messages: defineTable({
+    author: v.string(),
+    body: v.string(),
+    url: v.optional(v.string()),
+  }),
+  slides: defineTable({
+    title: v.optional(v.string()),
+    storageId: v.string(),
+  }),
+  slideIndex: defineTable({
+    index: v.number(),
+  }),
+  votes: defineTable({
+    option: v.string(),
+    author: v.string(),
+  }),
+});

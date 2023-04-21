@@ -22,11 +22,14 @@ export const Slides = ({ index }: { index: number }) => {
         <article aria-busy="true"></article>
       )}
       <div style={{ display: "flex" }}>
-        <button onClick={() => setSlideIndex(index - 1)} disabled={index < 1}>
+        <button
+          onClick={() => setSlideIndex({ index: index - 1 })}
+          disabled={index < 1}
+        >
           ⏮️
         </button>
         <button
-          onClick={() => setSlideIndex(index + 1)}
+          onClick={() => setSlideIndex({ index: index + 1 })}
           disabled={index >= slides.length - 1}
         >
           ⏭️

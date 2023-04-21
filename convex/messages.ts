@@ -1,21 +1,23 @@
-import { Document, Id } from "./_generated/dataModel";
-import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
+import { Doc, Id } from "./_generated/dataModel";
+import { internalMutation, mutation, query } from "./_generated/server";
 
 export const list = query(async ({ db }) => {
   const messages = await db.query("messages").collect();
   return messages;
 });
 
-export const send = mutation(
-  async ({ db, scheduler }, body: string, author: string) => {
+export const send = mutation({
+  args: { body: v.string(), author: v.string() },
+  handler: async ({ db, scheduler }, { body, author }) => {
     const message = { body, author };
     const messageId = await db.insert("messages", message);
     if (body.startsWith("/dall-e ")) {
       const prompt = body.substring("/dall-e ".length);
-      scheduler.runAfter(0, "actions/createImage", prompt, messageId);
+      scheduler.runAfter(0, "createImage", { prompt, messageId });
     }
-  }
-);
+  },
+});
 
 //
 //
@@ -38,11 +40,16 @@ export const send = mutation(
 //
 //
 //
-export const update = mutation(
+export const update = internalMutation(
   async (
     { db },
-    messageId: Id<"messages">,
-    patch: Partial<Document<"messages">>
+    {
+      messageId,
+      patch,
+    }: {
+      messageId: Id<"messages">;
+      patch: Partial<Doc<"messages">>;
+    }
   ) => {
     await db.patch(messageId, patch);
   }

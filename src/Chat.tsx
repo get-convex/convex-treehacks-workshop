@@ -29,7 +29,7 @@ export const Chat = ({ name }: { name: string }) => {
           e.preventDefault();
           setNewMessageText("");
           //alert(name + ": " + newMessageText);
-          sendMessage(newMessageText, name);
+          sendMessage({ body: newMessageText, author: name });
         }}
       >
         <input

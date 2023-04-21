@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
-import { Id } from "../_generated/dataModel";
-import { action } from "../_generated/server";
+import { action } from "./_generated/server";
+import { v } from "convex/values";
 
 function giphyUrl(queryString: string) {
   return (
@@ -12,8 +12,10 @@ function giphyUrl(queryString: string) {
 }
 
 // Post a GIF chat message corresponding to the query string.
-const sendGif = action(
-  async ({ runMutation }, queryString: string, messageId: Id<"messages">) => {
+const sendGif = action({
+  args: { queryString: v.string(), messageId: v.id("messages") },
+
+  handler: async ({ runMutation }, { queryString, messageId }) => {
     // Fetch GIF url from GIPHY.
     const data = await fetch(giphyUrl(queryString));
     const json = (await data.json()) as any;
@@ -23,7 +25,7 @@ const sendGif = action(
     const url = json.data.embed_url;
 
     // Write GIF url to Convex.
-    await runMutation("messages:update", messageId, { url });
-  }
-);
+    await runMutation("messages:update", { messageId, patch: { url } });
+  },
+});
 export default sendGif;

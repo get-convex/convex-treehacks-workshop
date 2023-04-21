@@ -17,7 +17,7 @@ export const Votes = ({ name }: { name: string }) => {
             .sort((a, b) => b[1] - a[1])
             .map(([option, count]) => (
               <li key={option}>
-                <button onClick={() => vote(option, name)}>
+                <button onClick={() => vote({ option, author: name })}>
                   <span>
                     {count}: {option}
                   </span>
@@ -29,7 +29,7 @@ export const Votes = ({ name }: { name: string }) => {
         onSubmit={(e) => {
           e.preventDefault();
           setNewMessageText("");
-          vote(newMessageText, name);
+          vote({ option: newMessageText, author: name });
         }}
       >
         <input
