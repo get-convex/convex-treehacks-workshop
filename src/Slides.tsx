@@ -1,10 +1,11 @@
+import { api } from "../convex/_generated/api";
 import { useEffect } from "react";
-import { useMutation, useQuery } from "../convex/_generated/react";
+import { useMutation, useQuery } from "convex/react";
 
 export const Slides = ({ index }: { index: number }) => {
-  const slides = useQuery("slides:list") ?? [];
-  index = useQuery("slides:getIndex") ?? 0;
-  const setSlideIndex = useMutation("slides:setIndex");
+  const slides = useQuery(api.slides.list) ?? [];
+  index = useQuery(api.slides.getIndex) ?? 0;
+  const setSlideIndex = useMutation(api.slides.setIndex);
   // pre-fetch images
   useEffect(() => {
     for (const src of slides) {

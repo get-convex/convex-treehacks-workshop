@@ -1,5 +1,4 @@
-"use node";
-import fetch from "node-fetch";
+import { internal } from "./_generated/api";
 import { Configuration, OpenAIApi } from "openai";
 import { Id } from "./_generated/dataModel";
 import { internalAction } from "./_generated/server";
@@ -18,7 +17,7 @@ const createImage = internalAction(
     //const start = Date.now();
     //const elapsedMs = () => Date.now() - start;
     const fail = (reason: string): Promise<never> =>
-      runMutation("messages:update", {
+      runMutation(internal.messages.update, {
         messageId,
         patch: {
           body: reason,
@@ -36,7 +35,7 @@ const createImage = internalAction(
 
     const openai = new OpenAIApi(new Configuration({ apiKey }));
 
-    runMutation("messages:update", {
+    runMutation(internal.messages.update, {
       messageId,
       patch: {
         body: prompt + "Moderating prompt...",
@@ -53,7 +52,7 @@ const createImage = internalAction(
       );
     }
 
-    runMutation("messages:update", {
+    runMutation(internal.messages.update, {
       messageId,
       patch: {
         body: prompt + "Generating image...",
@@ -67,7 +66,7 @@ const createImage = internalAction(
     const dallEImageUrl = opanaiResponse.data.data[0]["url"];
     if (!dallEImageUrl) return await fail("No image URL returned from OpenAI");
 
-    runMutation("messages:update", {
+    runMutation(internal.messages.update, {
       messageId,
       patch: {
         body: prompt + "Storing image...",
@@ -83,7 +82,7 @@ const createImage = internalAction(
     const url = (await storage.getUrl(storageId)) ?? undefined;
 
     // Write storageId as the body of the message to the Convex database.
-    await runMutation("messages:update", {
+    await runMutation(internal.messages.update, {
       messageId,
       patch: {
         body: prompt,

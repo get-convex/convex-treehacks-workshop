@@ -1,3 +1,4 @@
+import { internal } from "./_generated/api";
 import { v } from "convex/values";
 import { Doc, Id } from "./_generated/dataModel";
 import { internalMutation, mutation, query } from "./_generated/server";
@@ -14,32 +15,14 @@ export const send = mutation({
     const messageId = await db.insert("messages", message);
     if (body.startsWith("/dall-e ")) {
       const prompt = body.substring("/dall-e ".length);
-      scheduler.runAfter(0, "createImage", { prompt, messageId });
+      scheduler.runAfter(0, internal.createImage.default, {
+        prompt,
+        messageId,
+      });
     }
   },
 });
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 export const update = internalMutation(
   async (
     { db },

@@ -1,3 +1,4 @@
+import { internal } from "./_generated/api";
 import { action } from "./_generated/server";
 import { v } from "convex/values";
 
@@ -24,7 +25,7 @@ const sendGif = action({
     const url = json.data.embed_url;
 
     // Write GIF url to Convex.
-    await runMutation("messages:update", { messageId, patch: { url } });
+    await runMutation(internal.messages.update, { messageId, patch: { url } });
   },
 });
 export default sendGif;

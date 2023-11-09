@@ -1,13 +1,14 @@
+import { api } from "../convex/_generated/api";
 import { useState } from "react";
-import { useMutation, useQuery } from "../convex/_generated/react";
-import { BarChart } from "./BarChart";
+import { useMutation, useQuery } from "convex/react";
+// import { BarChart } from "./BarChart";
 
 export const Votes = ({ name }: { name: string }) => {
-  const options = useQuery("votes:list") || [];
+  const options = useQuery(api.votes.list) || [];
 
   const [newMessageText, setNewMessageText] = useState("");
-  const vote = useMutation("votes:vote");
-  const counts = useQuery("votes:count");
+  const vote = useMutation(api.votes.vote);
+  const counts = useQuery(api.votes.count);
   return (
     <section>
       <h2>Votes</h2>

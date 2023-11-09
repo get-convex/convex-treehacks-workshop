@@ -1,11 +1,12 @@
+import { api } from "../convex/_generated/api";
 import { useState } from "react";
-import { useMutation, useQuery } from "../convex/_generated/react";
+import { useMutation, useQuery } from "convex/react";
 
 export const Chat = ({ name }: { name: string }) => {
-  const messages = useQuery("messages:list") ?? [];
+  const messages = useQuery(api.messages.list) ?? [];
 
   const [newMessageText, setNewMessageText] = useState("");
-  const sendMessage = useMutation("messages:send");
+  const sendMessage = useMutation(api.messages.send);
   return (
     <section>
       <h2>Chat</h2>
